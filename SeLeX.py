@@ -2,11 +2,10 @@ import tkinter as tk
 from tkinter import *
 import tkinter.font as tkFont
 import tkinter.messagebox
-
-import goto
-import label as label
-from goto import with_goto
-import requests
+import os
+#from play_video import *
+from Vid_Player2 import *
+#from pyglet_2 import *
 
 HEIGHT = 720
 WIDTH = 1280
@@ -117,7 +116,24 @@ def results(search_results):
 	background_image = tk.PhotoImage(file='results.png')
 	background_label = tk.Label(root2, image=background_image)
 	background_label.place(relwidth=1, relheight=1)
+	def find_files(filename, search_path):
+		result = []
 
+		# Wlaking top-down from the root
+		for root, dir, files in os.walk(search_path):
+			if filename in files:
+				result.append(os.path.join(root, filename))
+		return result
+
+	show = find_files(search_results + ".mp4", "C:\\Users\sarth\Desktop")
 	uname = Label(root2, text=disp_text, height=2, font=fontStyle, bg = '#0d2d44', fg = 'white').place(relx = 0.25,rely =0.058)
+	y = 0.3
+	for file in show:
+		file_string = file.lower()
+		fil = Label(root2, text=file_string, font=fontStyle).place(relx=0.1, rely= y)
+		play_button = tk.Button(root2, text = "PLAY", bg = '#a3def8', fg = '#0c3b6a', font= fontStyle, command = lambda : my_Player(file_string))
+		play_button.place(relx=0.8,rely= y + 0.2, relheight=0.09, relwidth=0.12)
+		y = y + 0.15
 	root2.mainloop()
 login_page()
+
