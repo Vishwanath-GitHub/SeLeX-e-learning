@@ -3,25 +3,27 @@ from tkinter import *
 import tkinter.font as tkFont
 import tkinter.messagebox
 import os
+import sys
 from Vid_Player2 import *
 from autosub import *
 from Database import *
 HEIGHT = 720
 WIDTH = 1280
 
-
+def close_everything():
+    sys.exit()
 def validate(uname, passwrd, root):
     value= checker(uname, passwrd)
     if value:
         root.destroy()
         search_page()
 
-
     elif not value:
         tkinter.messagebox.showinfo("Failed", "Invalid Creds")
 
 
 def register():
+
     font = tkFont.Font(family="Times New Roman", size=10)
     window = Tk()
     window.title("Register Your Self Here")
@@ -34,16 +36,28 @@ def register():
     uname_entry.place(relx = 0.35, rely = 0.108, relwidth = 0.6, relheight = 0.07)
 
     password_label = Label(window, text="Enter Password :", font=font).place(relx=0.06, rely=0.3)
-    password_entry = tk.Entry(window, font=100)
+    password_entry = tk.Entry(window, font=100, show = '*')
     password_entry.place(relx=0.35, rely=0.308, relwidth=0.6, relheight=0.07)
 
     cnfpass_label = Label(window, text="Confirm Password :", font=font).place(relx=0.06, rely=0.5)
-    cnfpass_entry = tk.Entry(window, font=100)
+    cnfpass_entry = tk.Entry(window, font=100, show = '*')
     cnfpass_entry.place(relx=0.35, rely=0.508, relwidth=0.6, relheight=0.07)
 
-    reg_button = tk.Button(window, text='REGISTER NOW!', bg='#a3def8', fg='#0c3b6a', font = font, command = lambda : sql_register(uname_entry.get(), password_entry.get()))
+    reg_button = tk.Button(window, text='REGISTER NOW!', bg='#a3def8', fg='#0c3b6a', font = font, command = lambda : valid_or_not(uname_entry.get(), password_entry.get(),cnfpass_entry.get()))
     reg_button.place(relx=0.33, rely=0.8, relheight=0.09, relwidth=0.35)
 
+
+    def valid_or_not(uname, password , cnfpassword):
+        if password == cnfpassword:
+            value = sql_register(uname, password)
+            if value:
+                tkinter.messagebox.showinfo("SUCCESS", "Account Created Successfully")
+                window.destroy()
+            elif not value:
+                tkinter.messagebox.showinfo("ERROR", "Username Already Exists!")
+
+        else:
+            tkinter.messagebox.showinfo("Error", "Passwords do not match!")
 
     window.mainloop()
 
@@ -90,7 +104,7 @@ def search_page():
     background_image = tk.PhotoImage(file='search_page.png')
     background_label = tk.Label(root1, image=background_image)
     background_label.place(relwidth=1, relheight=1)
-    button1 = tk.Button(root1, text='BACK', bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: login_page())
+    button1 = tk.Button(root1, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: close_everything())
     button1.place(relheight=0.05, relwidth=0.1)
 
     frame = tk.Frame(root1, bg='#454545', bd=5)
@@ -145,7 +159,8 @@ def results(search_results):
     background_image = tk.PhotoImage(file='results.png')
     background_label = tk.Label(root2, image=background_image)
     background_label.place(relwidth=1, relheight=1)
-
+    button1 = tk.Button(root2, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: close_everything())
+    button1.place(relheight=0.05, relwidth=0.1)
     def find_files(filename, search_path):
         result = []
 
@@ -161,11 +176,9 @@ def results(search_results):
     for file in show:
         file_string = file.lower()
         fil = Label(root2, text=file_string, font=fontStyle).place(relx=0.1, rely=y)
-        play_button = tk.Button(root2, text="PLAY", bg='#a3def8', fg='#0c3b6a', font=fontStyle,
-                                command=lambda: my_Player(file_string))
+        play_button = tk.Button(root2, text="PLAY", bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: my_Player(file_string))
         play_button.place(relx=0.8, rely=y + 0.2, relheight=0.09, relwidth=0.12)
-        next_button = tk.Button(root2, text="NEXT", bg='#a3def8', fg='#0c3b6a', font=fontStyle,
-                                command=lambda: play_sub(file_string, root2))
+        next_button = tk.Button(root2, text="NEXT", bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: play_sub(file_string, root2))
         next_button.place(relx=0.9, rely=0, relheight=0.09, relwidth=0.12)
         y = y + 0.15
     root2.mainloop()
@@ -181,6 +194,8 @@ def play_sub(file_string, root2):
     background_image = tk.PhotoImage(file='subtitles.png')
     background_label = tk.Label(root3, image=background_image)
     background_label.place(relwidth=1, relheight=1)
+    button1 = tk.Button(root3, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: close_everything())
+    button1.place(relheight=0.05, relwidth=0.1)
     autosub(file_string)
     root3.mainloop()
 
