@@ -1,7 +1,6 @@
-def autosub(file_string):
+def autosub(file_string, search_results):
     import os
     import subprocess
-    print(os.getcwd())
     subprocess.run([".\\autosub", "-S","en-US","-i", file_string])
-    subprocess.run(["python", "subtitle_to_text.py","test.en-us.srt"])
+    subprocess.run(["python", "subtitle_to_text.py",search_results + ".en-us.srt"])
 
