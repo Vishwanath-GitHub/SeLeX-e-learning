@@ -29,3 +29,9 @@ The purpose of this project is to build to an E-Learning platform that has two s
 ### Open Sources Modules and Projects used:
 1. https://github.com/BingLingGroup/autosub (for generation of subtitles)
 2. https://github.com/satwikkansal/subtitles_to_plaintext (for removal of time stamp from ".srt" file)
+
+### Technologies & Languages Used:
+* Python 3 (with GUI)
+* SQLite
+
+_Project is made accordingly to the guidelines given by HAB59!_
