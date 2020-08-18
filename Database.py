@@ -1,16 +1,34 @@
-
 def sql_register(uname, password):
     import sqlite3
 
     connection = sqlite3.connect("mydb.db")
 
     crsr = connection.cursor()
-    sql_command = """INSERT INTO users VALUES(?,?);"""
-    crsr.execute(sql_command, (uname, password,))
-    print("It is Working!")
-    connection.commit()
+    def convertTuple(tup):
+        s = ''.join(tup)
+        return s
+    u = str(uname)
+    sqlcheck = "SELECT uname FROM users WHERE uname =?"
+    crsr.execute(sqlcheck, (u,))
+    values2 = crsr.fetchall()
+    print(values2)
+    if values2 == []:
+        sql_command = """INSERT INTO users VALUES(?,?);"""
+        crsr.execute(sql_command, (uname, password,))
+        print("It is Working!")
+        connection.commit()
+        connection.close()
+        return True
+    else:
+        username = values2[0]
+        s = convertTuple(username)
+        connection.commit()
+        connection.close()
+        if s == u:
+            return False
 
-    connection.close()
+
+
 
 
 def checker(uname, password):
