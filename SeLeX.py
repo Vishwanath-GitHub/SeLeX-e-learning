@@ -7,6 +7,7 @@ import sys
 from Vid_Player2 import *
 from autosub import *
 from Database import *
+from show_subs import *
 HEIGHT = 720
 WIDTH = 1280
 
@@ -74,7 +75,7 @@ def login_page():
 
     fontStyle = tkFont.Font(family="Times New Roman", size=10)
 
-    frame1 = tk.Frame(root, bg='#80c1ff', bd=5)
+    frame1 = tk.Frame(root, bg='#3b5249', bd=5)
     frame1.place(relx=0.34, rely=0.67, relwidth=0.25, relheight=0.05, anchor='n')
     uname = Label(frame1, text="Username").place(x=30, y=50)
 
@@ -87,9 +88,9 @@ def login_page():
     entry2 = tk.Entry(frame2, font=100, show="*")
     entry2.place(relx=0, relwidth=1, relheight=1)
     fontStyle = tkFont.Font(family="Berlin Sans FB", size=25)
-    button = tk.Button(root, text='LOGIN', bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: validate(entry.get(), entry2.get(), root))
+    button = tk.Button(root, text='LOGIN', bg='#199DF4', fg='white', font=fontStyle,command=lambda: validate(entry.get(), entry2.get(), root))
     button.place(relx=0.52, rely=0.67, relheight=0.05, relwidth=0.1)
-    register_button = tk.Button(root, text='REGISTER', bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: register())
+    register_button = tk.Button(root, text='REGISTER', bg='#00b300', fg='white', font=fontStyle,command=lambda: register())
     register_button.place(relx=0.52, rely=0.752, relheight=0.05, relwidth=0.13)
 
     root.mainloop()
@@ -101,10 +102,11 @@ def search_page():
     canvas = tk.Canvas(root1, height=HEIGHT, width=WIDTH)
     canvas.pack()
     fontStyle = tkFont.Font(family="Berlin Sans FB", size=25)
+    fstyle = tkFont.Font(family="Berlin Sans FB", size=15)
     background_image = tk.PhotoImage(file='search_page.png')
     background_label = tk.Label(root1, image=background_image)
     background_label.place(relwidth=1, relheight=1)
-    button1 = tk.Button(root1, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: close_everything())
+    button1 = tk.Button(root1, text='LOG OUT', bg='#ff3333', fg='white', font=fstyle, command=lambda: close_everything())
     button1.place(relheight=0.05, relwidth=0.1)
 
     frame = tk.Frame(root1, bg='#454545', bd=5)
@@ -113,7 +115,7 @@ def search_page():
     entry = tk.Entry(frame, font=100)
     entry.place(relx=0, relwidth=1, relheight=1)
 
-    button = tk.Button(root1, text="LET'S GO", bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: values())
+    button = tk.Button(root1, text="LET'S GO", bg='#e66f00', fg='white', font=fontStyle, command=lambda: values())
     button.place(relx=0.45, rely=0.8, relheight=0.09, relwidth=0.12)
 
     CheckVar1 = IntVar()
@@ -156,10 +158,11 @@ def results(search_results):
     canvas = tk.Canvas(root2, height=HEIGHT, width=WIDTH)
     canvas.pack()
     fontStyle = tkFont.Font(family="Segoe Print Bold", size=30)
+    fstyle = tkFont.Font(family="Berlin Sans FB", size=18)
     background_image = tk.PhotoImage(file='results.png')
     background_label = tk.Label(root2, image=background_image)
     background_label.place(relwidth=1, relheight=1)
-    button1 = tk.Button(root2, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle, command=lambda: close_everything())
+    button1 = tk.Button(root2, text='LOG OUT', bg='#ff3333', fg='white', font=fstyle, command=lambda: close_everything())
     button1.place(relheight=0.05, relwidth=0.1)
     def find_files(filename, search_path):
         result = []
@@ -176,27 +179,32 @@ def results(search_results):
     for file in show:
         file_string = file.lower()
         fil = Label(root2, text=file_string, font=fontStyle).place(relx=0.1, rely=y)
-        play_button = tk.Button(root2, text="PLAY", bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: my_Player(file_string))
-        play_button.place(relx=0.8, rely=y + 0.2, relheight=0.09, relwidth=0.12)
-        next_button = tk.Button(root2, text="NEXT", bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: play_sub(file_string, root2))
-        next_button.place(relx=0.9, rely=0, relheight=0.09, relwidth=0.12)
+
+        play_button = tk.Button(root2, text="PLAY", bg='#a3def8', fg='#0c3b6a', font=fstyle,command=lambda:my_Player(file_string))
+        play_button.place(relx=0.8, rely=y + 0.2, relheight=0.09, relwidth=0.1)
+
+        generate_button = tk.Button(root2, text="GENERATE SUBS", bg='#a3def8', fg='#0c3b6a', font=fstyle,command=lambda: autosub(file_string, search_results))
+        generate_button.place(relx=0.62, rely=y + 0.2, relheight=0.09, relwidth=0.15)
+        next_button = tk.Button(root2, text="NEXT", bg='#fddb3a', fg='#806000', font=fstyle, command = lambda : show_sub(root2, search_results))
+        next_button.place(relx=0.9, rely=0, relheight=0.05, relwidth=0.1)
         y = y + 0.15
     root2.mainloop()
 
 
-def play_sub(file_string, root2):
+def show_sub(root2, search_results):
     root2.destroy()
     root3 = Tk()
     root3.title("Subtitles")
     canvas = tk.Canvas(root3, height=HEIGHT, width=WIDTH)
     canvas.pack()
     fontStyle = tkFont.Font(family="Segoe Print Bold", size=30)
+    fstyle = tkFont.Font(family="Berlin Sans FB", size=15)
     background_image = tk.PhotoImage(file='subtitles.png')
     background_label = tk.Label(root3, image=background_image)
     background_label.place(relwidth=1, relheight=1)
-    button1 = tk.Button(root3, text='LOG OUT', bg='#a3def8', fg='#0c3b6a', font=fontStyle,command=lambda: close_everything())
+    button1 = tk.Button(root3, text='LOG OUT', bg='#ff3333', fg='white', font=fstyle,command=lambda: close_everything())
     button1.place(relheight=0.05, relwidth=0.1)
-    autosub(file_string)
+    show(search_results, root3)
     root3.mainloop()
 
 
