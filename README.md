@@ -25,3 +25,7 @@ The purpose of this project is to build to an E-Learning platform that has two s
 * Open PyCharm and open this project inside it
 * Open Settings and inside Python Interpreter, install these modules: ModTkinter, Pyglet, ffmpeg, ffpyplayer
 * Run [`SeLeX.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX.py)
+
+### Open Sources Modules and Projects used:
+1. https://github.com/BingLingGroup/autosub (for generation subtitles)
+2. https://github.com/satwikkansal/subtitles_to_plaintext (for removal of subtitles from ".srt" file)
