@@ -14,3 +14,14 @@ The purpose of this project is to build to an E-Learning platform that has two s
 ### Prerequisites (installation needed):
 * Python 3.8 or better ([download here](https://www.python.org/downloads/windows/))
 * Jetbrains PyCharm 2020.2 or better ([download here](https://www.jetbrains.com/pycharm/download/#section=windows))
+* FFMPEG Module for Windows ([download here](https://ffmpeg.zeranoe.com/builds/)) (extract this to the project folder)
+
+### How to Run:
+* `git clone https://github.com/hackappbuilders/SeLeX-e-learning.git`
+* Open cloned folder
+* Run this file inside folder: [`sqlite3.exe`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/sqlite3.exe)
+* Run this command: `.open mydb.db`
+* Run this command: `CREATE TABLE users ( uname VARCHAR(30) PRIMARY KEY, password VARCHAR(30) );`
+* Open PyCharm and open this project inside it
+* Open Settings and inside Python Interpreter, install these modules: ModTkinter, Pyglet, ffmpeg, ffpyplayer
+* Run [`SeLeX.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX.py)
