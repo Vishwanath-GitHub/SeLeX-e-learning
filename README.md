@@ -16,7 +16,8 @@ The purpose of this project is to build to an E-Learning platform that has two s
 * Jetbrains PyCharm 2020.2 or better ([download here](https://www.jetbrains.com/pycharm/download/#section=windows))
 * FFMPEG Module for Windows ([download here](https://ffmpeg.zeranoe.com/builds/)) (extract this to the project folder)
 
-### How to Run:
+### How to Run: 
+(do this on Desktop)
 * `git clone https://github.com/hackappbuilders/SeLeX-e-learning.git`
 * Open cloned folder
 * Run this file inside folder: [`sqlite3.exe`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/sqlite3.exe)
@@ -24,6 +25,7 @@ The purpose of this project is to build to an E-Learning platform that has two s
 * Run this command: `CREATE TABLE users ( uname VARCHAR(30) PRIMARY KEY, password VARCHAR(30) );`
 * Open PyCharm and open this project inside it
 * Open Settings and inside Python Interpreter, install these modules: ModTkinter, Pyglet, ffmpeg, ffpyplayer
+* Inside `SeLeX.py` file, on line number 281, inside `show = find_files(search_results + ".mp4", "C:\\Users\ADMIN\Desktop")`, replace `ADMIN` with your computer's username. (exteremely necessary) 
 * Run [`SeLeX.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX.py)
 
 ### Open Sources Modules and Projects used:
