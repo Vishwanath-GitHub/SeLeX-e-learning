@@ -27,5 +27,5 @@ The purpose of this project is to build to an E-Learning platform that has two s
 * Run [`SeLeX.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX.py)
 
 ### Open Sources Modules and Projects used:
-1. https://github.com/BingLingGroup/autosub (for generation subtitles)
+1. https://github.com/BingLingGroup/autosub (for generation of subtitles)
 2. https://github.com/satwikkansal/subtitles_to_plaintext (for removal of subtitles from ".srt" file)
