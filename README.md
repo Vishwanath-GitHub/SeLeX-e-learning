@@ -18,8 +18,8 @@ The purpose of this project is to build to an E-Learning platform that has two s
 
 ### How to Run: 
 (do this on Desktop)
-* Run [`SeLeX_E-Learning.exe`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX_E-Learning.exe)
-* If it gets stuck in video playing, then inside [`SeLeX_E-Learning.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX_E-Learning.py) file, on line number 281, inside [`show = find_files(search_results + ".mp4", "C:\\Users\ADMIN\Desktop")`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/1ab48bd7d7c4493da3c95e5f79b6d088152a845b/SeLeX_E-Learning.py#L281), replace `ADMIN` with your computer's username. (this is done for improving searching process)
+* Run [`SeLeX_E-Learning.exe`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/master/SeLeX_E-Learning.exe)
+* If it gets stuck in video playing, then inside [`SeLeX_E-Learning.py`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/master/SeLeX_E-Learning.py) file, on line number 281, inside [`show = find_files(search_results + ".mp4", "C:\\Users\ADMIN\Desktop")`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/628e87a6ce0439eb49690a9340969820baea0f52/SeLeX_E-Learning.py#L281), replace `ADMIN` with your computer's username. (this is done for improving searching process)
 * Open CMD, run `pip install pyinstaller` and `pyinstaller --onefile -w SeLeX_E-Learning.py`
 * This new executable file is stored inside `dist` folder. Move this file to our main working project directory with replacing old file.
 * Now run `SeLeX_E-Learning.exe`
@@ -29,13 +29,13 @@ OR
 
 * `git clone https://github.com/hackappbuilders/SeLeX-e-learning.git`
 * Open cloned folder
-* Run this file inside folder: [`sqlite3.exe`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/sqlite3.exe)
+* Run this file inside folder: [`sqlite3.exe`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/master/sqlite3.exe)
 * Run this command: `.open mydb.db`
 * Run this command: `CREATE TABLE users ( uname VARCHAR(30) PRIMARY KEY, password VARCHAR(30) );`
 * Open PyCharm and open this project inside it
 * Open Settings and inside Python Interpreter, install these modules: ModTkinter, Pyglet, ffmpeg, ffpyplayer
-* Inside [`SeLeX_E-Learning.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX_E-Learning.py) file, on line number 281, inside [`show = find_files(search_results + ".mp4", "C:\\Users\ADMIN\Desktop")`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/1ab48bd7d7c4493da3c95e5f79b6d088152a845b/SeLeX_E-Learning.py#L281), replace `ADMIN` with your computer's username. (extremely necessary)
-* Run [`SeLeX_E-Learning.py`](https://github.com/hackappbuilders/SeLeX-e-learning/blob/master/SeLeX.py)
+* Inside [`SeLeX_E-Learning.py`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/master/SeLeX_E-Learning.py) file, on line number 281, inside [`show = find_files(search_results + ".mp4", "C:\\Users\ADMIN\Desktop")`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/628e87a6ce0439eb49690a9340969820baea0f52/SeLeX_E-Learning.py#L281), replace `ADMIN` with your computer's username. (extremely necessary)
+* Run [`SeLeX_E-Learning.py`](https://github.com/Vishwanath-GitHub/SeLex-e-learning/blob/master/SeLeX_E-Learning.py)
 
 ### Open Sources Modules and Projects used:
 1. https://github.com/BingLingGroup/autosub (for generation of subtitles)
